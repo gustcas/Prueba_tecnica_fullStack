@@ -1,0 +1,45 @@
+<ion-content class="login-content">
+  <div class="login-card">
+    <h1 class="login-title">LOGIN</h1>
+
+    <div class="login-input">
+      <ion-icon name="person-outline" class="login-icon"></ion-icon>
+      <ion-input
+        class="login-input-inner"
+        type="email"
+        [(ngModel)]="email"
+        placeholder="Email">
+      </ion-input>
+    </div>
+
+    <div class="login-input">
+      <ion-icon name="lock-closed-outline" class="login-icon"></ion-icon>
+      <ion-input
+        class="login-input-inner"
+        [type]="showPassword ? 'text' : 'password'"
+        [(ngModel)]="password"
+        placeholder="Contraseña">
+      </ion-input>
+      <ion-icon
+        [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"
+        class="login-icon login-icon-end"
+        (click)="togglePasswordVisibility()">
+      </ion-icon>
+    </div>
+
+    <div class="error" *ngIf="error">
+      {{ error }}
+    </div>
+
+    <ion-button
+      expand="block"
+      class="login-button"
+      [disabled]="loading"
+      (click)="login()">
+      Ingresar
+    </ion-button>
+
+    <a class="recover-link" href="#">Recuperar Contraseña</a>
+  </div>
+</ion-content>
+

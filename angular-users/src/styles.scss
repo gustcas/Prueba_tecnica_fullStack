@@ -1,0 +1,80 @@
+/* Global styles */
+@import 'primeicons/primeicons.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: #f5f7fb;
+  color: #111827;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* PrimeNG table base styling */
+.p-datatable {
+  border-radius: 18px;
+  background-color: #ffffff;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+  padding: 1.25rem 1.5rem 1rem;
+}
+
+.p-datatable-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.p-datatable-table thead th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #6b7280;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.p-datatable-table tbody td {
+  padding: 0.8rem 1rem;
+  font-size: 0.9rem;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.p-datatable-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.p-datatable-table tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+.p-paginator {
+  margin-top: 0.75rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.p-paginator-page,
+.p-paginator-next,
+.p-paginator-prev {
+  border-radius: 999px;
+}
+
+.p-paginator-page.p-highlight {
+  background-color: #111827;
+  color: #ffffff;
+}

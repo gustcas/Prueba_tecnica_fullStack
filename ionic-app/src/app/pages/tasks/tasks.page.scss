@@ -1,0 +1,26 @@
+ion-content {
+  --background: #f5f7fb;
+}
+
+ion-list {
+  margin: 16px;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.25);
+}
+
+ion-item {
+  --background: #ffffff;
+  min-height: 64px;
+}
+
+ion-label h2 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+ion-label p {
+  font-size: 13px;
+  margin-top: 2px;
+  color: #6b7280;
+}

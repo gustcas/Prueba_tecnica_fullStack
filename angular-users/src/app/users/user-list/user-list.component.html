@@ -1,0 +1,121 @@
+<div class="user-list">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">
+        <h2>Listado de usuarios</h2>
+        <p class="subtitle">Gestiona los usuarios registrados en el sistema</p>
+      </div>
+
+      <div class="card-actions">
+        <span class="p-input-icon-left search-wrapper">
+          <i class="pi pi-search"></i>
+          <input #search type="text" pInputText placeholder="Buscar por nombre..."
+            (input)="onSearchChange(search.value)" />
+        </span>
+
+        <button type="button" class="btn primary" (click)="startCreate()">
+          <i class="pi pi-user-plus"></i>
+          <span>Nuevo usuario</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <div class="state state-loading" *ngIf="state === 'loading'">
+        <i class="pi pi-spin pi-spinner"></i> Cargando usuarios...
+      </div>
+      <div class="state state-empty" *ngIf="state === 'empty'">
+        No se encontraron usuarios.
+      </div>
+      <div class="state state-error" *ngIf="state === 'error'">
+        Ocurrió un error al cargar los usuarios.
+      </div>
+
+      <div class="table-shell" *ngIf="filteredUsers.length && state === 'loaded'">
+        <table class="users-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Email</th>
+              <th class="col-actions">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of pagedUsers">
+              <td>{{ user.id }}</td>
+              <td>{{ user.name }}</td>
+              <td>{{ user.email }}</td>
+              <td class="actions">
+                <button type="button" class="icon-button" (click)="startEdit(user)">
+                  <i class="pi pi-pencil"></i>
+                </button>
+                <button type="button" class="icon-button danger" (click)="deleteUser(user)">
+                  <i class="pi pi-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="pagination" *ngIf="totalPages > 1">
+          <button class="page-link" (click)="goFirst()">&laquo;</button>
+          <button class="page-link" (click)="goPrev()">&lsaquo;</button>
+
+          <button
+            *ngFor="let page of pages"
+            class="page-link"
+            [class.active]="page === currentPage"
+            (click)="goToPage(page)">
+            {{ page }}
+          </button>
+
+          <button class="page-link" (click)="goNext()">&rsaquo;</button>
+          <button class="page-link" (click)="goLast()">&raquo;</button>
+
+          <span class="page-size">
+            {{ pageSize }} filas
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" *ngIf="showModal">
+    <div class="modal">
+      <h3>{{ editing ? 'Editar usuario' : 'Nuevo usuario' }}</h3>
+      <p class="modal-subtitle">
+        Completa la información del usuario y guarda los cambios.
+      </p>
+
+      <div class="modal-body">
+        <div class="form-field">
+          <label>Nombre</label>
+          <input type="text" pInputText [(ngModel)]="form.name" />
+        </div>
+
+        <div class="form-field">
+          <label>Email</label>
+          <input type="email" pInputText [(ngModel)]="form.email" />
+        </div>
+
+        <div class="form-field">
+          <label>Contraseña</label>
+          <input type="password" pInputText [(ngModel)]="form.password" />
+          <small class="hint">
+            Solo cambia la contraseña si necesitas actualizarla.
+          </small>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn ghost" (click)="closeModal()">
+          Cancelar
+        </button>
+        <button type="button" class="btn primary" (click)="saveUser()">
+          {{ editing ? 'Guardar cambios' : 'Crear usuario' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

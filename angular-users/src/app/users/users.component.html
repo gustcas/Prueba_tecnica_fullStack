@@ -1,0 +1,72 @@
+<div class="users-page">
+  <ng-container *ngIf="(loggedIn$ | async); else loginTemplate">
+    <div class="logout-bar">
+      <span>Sesión iniciada como {{ email }}</span>
+      <button
+        pButton
+        type="button"
+        class="p-button-text"
+        label="Cerrar sesión"
+        icon="pi pi-sign-out"
+        (click)="logout()">
+      </button>
+    </div>
+
+    <app-user-list></app-user-list>
+  </ng-container>
+
+  <ng-template #loginTemplate>
+    <div class="auth-wrapper">
+      <div class="login-card">
+        <h1 class="login-title">LOGIN</h1>
+
+        <div class="form-field">
+          <span class="p-input-icon-left full-width-input">
+            <i class="pi pi-user"></i>
+            <input
+              id="email"
+              type="email"
+              pInputText
+              placeholder="Email"
+              [(ngModel)]="email" />
+          </span>
+        </div>
+
+        <div class="form-field">
+          <span class="p-input-icon-left p-input-icon-right full-width-input">
+            <i class="pi pi-lock"></i>
+            <input
+              id="password"
+              [type]="showPassword ? 'text' : 'password'"
+              pInputText
+              placeholder="Contraseña"
+              [(ngModel)]="password" />
+            <i
+              class="pi toggle-password-icon"
+              [ngClass]="showPassword ? 'pi-eye-slash' : 'pi-eye'"
+              (click)="togglePasswordVisibility()">
+            </i>
+          </span>
+        </div>
+
+        <div class="error" *ngIf="error">
+          {{ error }}
+        </div>
+
+        <button
+          pButton
+          type="button"
+          class="login-button"
+          label="Ingresar"
+          [disabled]="loading"
+          (click)="login()">
+        </button>
+
+        <a class="recover-link" href="#">
+          Recuperar Contraseña
+        </a>
+      </div>
+    </div>
+  </ng-template>
+</div>
+
